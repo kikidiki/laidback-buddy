@@ -1,16 +1,62 @@
-# This is a sample Python script.
+from speak import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Main Loop
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('  asdasd   ')
+    speak('Waiting for instructions.')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+    while True:
+        query = parse_command()
+
+        for word in activationWord:
+            if word.lower() in query:
+                # instructions
+                listening()
+
+
+
+
+
+#
+# while True:
+#     r = sr.Recognizer()
+#     with sr.Microphone() as source:
+#         print("Listening...")
+#         audio = r.listen(source)
+#     try:
+#         query = r.recognize_google(audio)
+#         print(f"You said: {query}")
+#         if query == 'open chrome':
+#             subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
+#             speak("Take diz")
+#         elif query in stopWord:
+#             speak("oke")
+#             print("oke")
+#             break
+#         else:
+#             speak("Command not recognized")
+#     except Exception as e:
+#         print(e)
+
+
+
+##################### implement threading and canceling on listening
+
+
+
+    # while True:
+    #     # Parse as a list
+    #     query = parse_command().lower().split()
+    #
+    #     if activationWord in query:
+    #         query.pop(0)
+    #
+    #         #List commands
+    #         if query[0] == 'google':
+    #             if '' in query:
+    #                 speak("Heya, m'Lord!!")
+    #             else:
+    #                 query.pop(0) #remove 'say'
+    #                 speech = ''.join(query)
+    #                 speak(speech)
