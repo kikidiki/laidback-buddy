@@ -1,7 +1,7 @@
 from logging.config import listen
 import speech_recognition as sr
 import pyttsx3
-import playsound
+#import playsound
 import webbrowser
 import subprocess
 from time import sleep
