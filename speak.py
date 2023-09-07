@@ -71,6 +71,14 @@ def listening():
         if query == 'open chrome':
             subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
             speak("Take diz")
+
+        if query == 'open chrome':
+            # start the Riot Client in the background and open the League of Legends client
+            subprocess.run(["D:\Games\Riot Games\Riot Client\RiotClientServices.exe", "--headless",
+                            "--launch-product=league_of_legends", "--launch-patchline=live"])
+            speak("Wait a sec")
+
+
         elif any(word in query for word in stopWord):
             speak("oke")
             print("oke")
