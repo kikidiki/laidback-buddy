@@ -6,6 +6,8 @@ import webbrowser
 import subprocess
 from time import sleep
 import threading
+import lcu_driver
+import asyncio
 
 
 # Define listener and engine
@@ -38,3 +40,10 @@ stopWord = ['stfu', 'stop', 'shut the fuck up', 'exit']
 def speak(text):
     engine.say(text)
     engine.runAndWait()
+
+
+
+    ##############
+
+
+

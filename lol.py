@@ -1,7 +1,6 @@
 from vars import *
 
 
-
 def open_lol():
     print("I am listening for a command")
     speak("I am listening for a command")
@@ -30,3 +29,7 @@ def open_lol():
         open_lol()
         return 'None'
     return query
+
+
+
+

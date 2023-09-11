@@ -1,5 +1,5 @@
 from vars import *
-
+from lol import *
 
 # Play an audio file (import playsound)
 # drasti = "voicerecs/drasti.mp3"
@@ -72,12 +72,8 @@ def listening():
             subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
             speak("Take diz")
 
-        if query == 'open chrome':
-            # start the Riot Client in the background and open the League of Legends client
-            subprocess.run(["D:\Games\Riot Games\Riot Client\RiotClientServices.exe", "--headless",
-                            "--launch-product=league_of_legends", "--launch-patchline=live"])
-            speak("Wait a sec")
-
+        if query == 'open league':
+            print("ads")
 
         elif any(word in query for word in stopWord):
             speak("oke")
