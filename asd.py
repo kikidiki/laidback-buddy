@@ -13,6 +13,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Create the connector object
 connector = lcu_driver.Connector()
+
+
+
+
 # Define a function to be called when LCU API is ready to be used
 
 p = subprocess.Popen(["D:\\Games\\Riot Games\\Riot Client\\RiotClientServices.exe", "--headless",
