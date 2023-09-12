@@ -45,12 +45,14 @@ async def ready_check_changed(connection, event):
     if event.data['state'] == 'InProgress' and event.data['playerResponse'] == 'None':
         await connection.request('post', '/lol-matchmaking/v1/ready-check/accept', data={})
 
+@connector.ws.register('/lol-gameflow/v1/gameflow-phase', event_types=('UPDATE',))
+async def game_started(connection, event):
+    if event.data == 'ChampSelect':
+        # The match has started, so exit the script
+        print("The match has started, exiting the script...")
+        await connector.stop()
 
 # Register the connect function to be called on startup
 #connector.ready(connect)
 # Start the connector
 connector.start()
-
-
-
-
