@@ -53,14 +53,9 @@ for line in bans_file:
             temp_champions_map.update({champion_list_to_json[i]['name']: champion_list_to_json[i]['id']})
         champions_map = temp_champions_map
 
-    ############################# end
-
-# Define a function to be called when LCU API is ready to be used
 
 p = subprocess.Popen(["D:\\Games\\Riot Games\\Riot Client\\RiotClientServices.exe", "--headless",
                       "--launch-product=league_of_legends", "--launch-patchline=live"])
-
-# time.sleep(20)
 
 while True:
     try:
@@ -91,8 +86,7 @@ async def ready_check_changed(connection, event):
 
 @connector.ws.register('/lol-champ-select/v1/session', event_types=('CREATE', 'UPDATE',))
 async def champ_select_changed(connection, event):
-    global am_i_assigned, pick_number, ban_number, am_i_banning, am_i_picking, phase, bans, picks, have_i_prepicked, in_game, action_id
-    have_i_prepicked = False
+    global am_i_assigned, pick_number, ban_number, am_i_banning, am_i_picking, phase, bans, picks, in_game, action_id
     lobby_phase = event.data['timer']['phase']
 
     local_player_cell_id = event.data['localPlayerCellId']
