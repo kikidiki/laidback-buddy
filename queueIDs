@@ -1,0 +1,78 @@
+Queue ID	Game Mode
+0	Custom
+2	Normal 5v5 Blind Pick
+4	Ranked Solo/Duo
+6	Ranked Flex
+7	Co-op vs AI
+8	Twisted Treeline Normal 3v3
+9	Ranked Flex Twisted Treeline
+14	Normal 5v5 Draft Pick
+16	Dominion 5v5 Blind Pick
+17	Dominion 5v5 Draft Pick
+25	Dominion Co-op vs AI
+31	Summoner’s Rift Co-op vs AI Intro Bot
+32	Summoner’s Rift Co-op vs AI Beginner Bot
+33	Summoner’s Rift Co-op vs AI Intermediate Bot
+41	Twisted Treeline Co-op vs AI Intermediate Bot
+42	Twisted Treeline Co-op vs AI Intro Bot
+52	Twisted Treeline Co-op vs AI Beginner Bot
+65	ARAM
+67	ARAM Co-op vs AI
+70	One for All
+72	Snowdown Showdown 1v1
+73	Snowdown Showdown 2v2
+75	Hexakill (Summoner’s Rift)
+76	Ultra Rapid Fire (URF)
+78	One For All: Mirror Mode
+83	Co-op vs AI Ultra Rapid Fire (URF)
+91	Doom Bots Rank 1 Vote Enabled
+92	Doom Bots Rank 2 Vote Enabled
+93	Doom Bots Rank 5 Vote Enabled
+96	Ascension
+98	Hexakill (Twisted Treeline)
+100	Butcher’s Bridge ARAM
+300	King Poro
+310	Nemesis Draft
+313	Black Market Brawlers
+315	Nexus Siege
+317	Definitely Not Dominion
+318	All Random URF
+325	All Random Summoner’s Rift
+400	Normal Draft Pick
+410	Ranked Draft Pick (deprecated)
+420	Ranked Solo/Duo
+430 Normal Blind Pick
+440 Ranked Flex
+450 ARAM
+460 Twisted Treeline Blind Pick
+470 Twisted Treeline Ranked Flex
+600 Blood Hunt Assassin
+610 Dark Star: Singularity
+700 Clash
+800 Co-op vs. AI Intermediate Bot
+810 Co-op vs. AI Intro Bot
+820 Co-op vs. AI Beginner Bot
+830 Co-op vs. AI Intro Bot
+840 Co-op vs. AI Beginner Bot
+850 Co-op vs. AI Intermediate Bot
+900 ARURF
+910 Ascension
+920 Legend of the Poro King
+940 Nexus Siege
+950 Doom Bots Voting
+960 Doom Bots Standard
+980 Star Guardian Invasion: Normal
+990 Star Guardian Invasion: Onslaught
+1000 PROJECT: Hunters
+1010 Snow ARURF
+1020 One for All
+1030 Odyssey Extraction: Intro
+1040 Odyssey Extraction: Cadet
+1050 Odyssey Extraction: Crewmember
+1060 Odyssey Extraction: Captain
+1070 Odyssey Extraction: Onslaught
+1090 Teamfight Tactics
+1100 Ranked Teamfight Tactics
+1110 Teamfight Tactics Tutorial
+1111 Teamfight Tactics test
+1200 Nexus Blitz

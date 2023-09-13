@@ -38,7 +38,6 @@ bans_file = open("bans.txt", "r").read().splitlines()
 for line in bans_file:
     bans.append(line)
 
-
     @connector.ready
     async def connect(connection):
         global summoner_id, champions_map
@@ -79,7 +78,7 @@ while True:
 async def connect(connection):
 
     # Create a lobby
-    await connection.request('post', '/lol-lobby/v2/lobby', data={'queueId': 400})
+    await connection.request('post', '/lol-lobby/v2/lobby', data={'queueId': 1})
     time.sleep(1)
 
     # Start matchmaking
@@ -89,9 +88,6 @@ async def connect(connection):
 async def ready_check_changed(connection, event):
     if event.data['state'] == 'InProgress' and event.data['playerResponse'] == 'None':
         await connection.request('post', '/lol-matchmaking/v1/ready-check/accept', data={})
-
-        ############################# start
-
 
 @connector.ws.register('/lol-champ-select/v1/session', event_types=('CREATE', 'UPDATE',))
 async def champ_select_changed(connection, event):
@@ -115,14 +111,6 @@ async def champ_select_changed(connection, event):
                 if phase == 'pick':
                     am_i_picking = actionArr['isInProgress']
 
-    if lobby_phase == 'PLANNING' and not have_i_prepicked:
-        try:
-            await connection.request('patch', '/lol-champ-select/v1/session/actions/%d' % action_id,
-                                     data={"championId": champions_map['Yuumi'], "completed": False})
-            have_i_prepicked = True
-        except (Exception,):
-            print(Exception)
-
     if phase == 'ban' and lobby_phase == 'BAN_PICK' and am_i_banning:
         while am_i_banning:
             try:
@@ -130,11 +118,15 @@ async def champ_select_changed(connection, event):
                                          data={"championId": champions_map[bans[ban_number]], "completed": True})
                 ban_number += 1
                 am_i_banning = False
+                print("banned")
+
             except (Exception,):
                 ban_number += 1
                 if ban_number > len(
                         bans):  # Due to some lcu bugs I have to do this to correct a bug that may happen in draft custom
                     ban_number = 0
+
+
     if phase == 'pick' and lobby_phase == 'BAN_PICK' and am_i_picking:
         while am_i_picking:
             try:
@@ -142,6 +134,8 @@ async def champ_select_changed(connection, event):
                                          data={"championId": champions_map[picks[pick_number]], "completed": True})
                 pick_number += 1
                 am_i_picking = False
+                print("picked")
+
             except (Exception,):
                 pick_number += 1
                 if pick_number > len(
@@ -165,26 +159,6 @@ async def champ_select_changed(connection, event):
                 print('Waiting for game to start...')
                 time.sleep(2)
 
-
-
-############################# end
-
-
-# @connector.ws.register('/lol-gameflow/v1/gameflow-phase', event_types=('UPDATE',))
-# async def game_started(connection, event):
-#     if event.data == 'ChampSelect':
-#         # The match has started, so exit the script
-#         print("The match has started, exiting the script...")
-#         await connector.stop()
-
-
-
-
-
-
-# Register the connect function to be called on startup
-#connector.ready(connect)
-# Start the connector
 connector.start()
 
 
