@@ -4,7 +4,7 @@ from vars import *
 import threading
 import pywinauto
 
-
+import sys
 import requests
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -49,7 +49,6 @@ for line in bans_file:
 
 p = subprocess.Popen(["D:\\Games\\Riot Games\\Riot Client\\RiotClientServices.exe", "--headless",
                       "--launch-product=league_of_legends", "--launch-patchline=live"])
-
 while True:
     try:
         # Try to find the lol client window by its title
@@ -62,11 +61,13 @@ while True:
         # The window is not found, so the lol client is still loading
         print("The lol client is still loading...")
         time.sleep(1)
+
+
 @connector.ready
 async def connect(connection):
 
     # Create a lobby
-    await connection.request('post', '/lol-lobby/v2/lobby', data={'queueId': 420})
+    await connection.request('post', '/lol-lobby/v2/lobby', data={'queueId': 450})
     time.sleep(1)
 
     # Start matchmaking
@@ -147,6 +148,7 @@ async def champ_select_changed(connection, event):
                 time.sleep(2)
 
 connector.start()
+
 
 
 # thread thing
