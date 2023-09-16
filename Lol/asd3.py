@@ -57,8 +57,6 @@ def stop_lol_matchup_finder():
         process.terminate()
 
 
-
-
 # Schedule the stop_lol_matchup_finder function to run after 3 seconds
 timer = threading.Timer(20, stop_lol_matchup_finder)
 timer.start()
