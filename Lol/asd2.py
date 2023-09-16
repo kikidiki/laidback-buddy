@@ -42,7 +42,7 @@ if not os.path.exists(riot_client_path):
 args = [riot_client_path, "--headless", "--launch-product=league_of_legends", "--launch-patchline=live"]
 
 # Start the subprocess
-p = subprocess.Popen(args)
+#p = subprocess.Popen(args)
 
 # Wait for the subprocess to complete, if needed
 # p.wait()

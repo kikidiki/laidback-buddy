@@ -1,4 +1,3 @@
-from vars import *
 from lol import *
 
 # Play an audio file (import playsound)
