@@ -1,4 +1,4 @@
-from lol_vars import *
+from Lol.lol_vars import *
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -18,11 +18,22 @@ pick_number = 0
 ban_number = 0
 
 # Load picks and bans from external files
-picks_file = open("picks.txt", "r").read().splitlines()
+
+try:
+    picks_file = open("Lol/picks.txt", "r").read().splitlines()
+except:
+    picks_file = open("picks.txt", "r").read().splitlines()
+
 for line in picks_file:
     picks.append(line)
 
-bans_file = open("bans.txt", "r").read().splitlines()
+
+try:
+    bans_file = open("Lol/bans.txt", "r").read().splitlines()
+except:
+    bans_file = open("bans.txt", "r").read().splitlines()
+
+
 for line in bans_file:
     bans.append(line)
 
@@ -49,7 +60,7 @@ async def connect(connection):
 
 
 # Start the League of Legends client using subprocess
-from Lol.lol_directory import args
+from lol_directory import args
 
 # p = subprocess.Popen(["D:\\Games\\Riot Games\\Riot Client\\RiotClientServices.exe", "--headless",
 #                     "--launch-product=league_of_legends", "--launch-patchline=live"])

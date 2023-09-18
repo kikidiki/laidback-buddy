@@ -1,7 +1,7 @@
-from lol_vars import *
+from Lol.lol_vars import *
 
 # Define the path to the text file where the base directory is stored
-config_file_path = "base_directory.txt"
+config_file_path = "Lol/base_directory.txt"
 
 # Check if the text file exists and is not empty
 if os.path.exists(config_file_path) and os.path.getsize(config_file_path) > 0:

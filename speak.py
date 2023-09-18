@@ -1,8 +1,11 @@
-from lol import *
+import threading
 
+from funcs import *
 # Play an audio file (import playsound)
 # drasti = "voicerecs/drasti.mp3"
 # playsound.playsound(drasti)
+
+
 
 
 # listens for keyword
@@ -73,6 +76,9 @@ def listening():
 
         if query == 'open league':
             print("ads")
+            thread_lol_matchup_file = threading.Thread(target=lol_matchup_file)
+            thread_lol_matchup_file.start()
+
 
         elif any(word in query for word in stopWord):
             speak("oke")

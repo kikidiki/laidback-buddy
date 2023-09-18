@@ -1,5 +1,5 @@
-from lol_vars import *
-
+from Lol.lol_vars import *
+new_pids = []
 # Function to get the list of Python PIDs
 def get_python_pids():
     python_pids = []
@@ -18,7 +18,7 @@ print(initial_python_pids)
 def lol_matchup_finder():
     global process
     # Start the League of Legends matchup finder process
-    process = subprocess.Popen(["python", "lol_match.py"], shell=True)
+    process = subprocess.Popen(["python", "Lol/lol_match.py"], shell=True)
 
     # Wait for the process to finish
     process.wait()
@@ -80,4 +80,3 @@ thread_check_new_processes.start()
 
 # Print a message to indicate the program has completed
 print("Program completed")
-

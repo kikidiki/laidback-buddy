@@ -12,7 +12,8 @@ if __name__ == '__main__':
         for word in activationWord:
             if word.lower() in query:
                 # instructions
-                listening()
+                listener = threading.Thread(target=listening())
+                listener.start()
 
 
 
