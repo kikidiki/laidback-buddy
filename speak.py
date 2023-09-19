@@ -1,5 +1,3 @@
-import threading
-
 from funcs import *
 # Play an audio file (import playsound)
 # drasti = "voicerecs/drasti.mp3"
@@ -29,33 +27,6 @@ def parse_command():
     return query.lower()
 
 
-def open_edge():
-    print("I am listening for a command")
-    speak("I am listening for a command")
-    with sr.Microphone() as source:
-        listener.pause_threshold = 1  # how long before the listening is canceled
-        listener.energy_threshold = 500
-        command = listener.listen(source)
-    try:
-        print('Recognizing speech...')
-        query = listener.recognize_google(command, language='en_us')
-        query = query.lower()
-        print(f"You said: {query}")
-        if query == 'open chrome':
-            subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
-            speak("Take diz")
-
-        else:
-            speak("Command not recognized")
-            open_edge()
-
-    except Exception as e:
-        speak("I didn't understand what you've said")
-        print(f"Error: {e}")
-        open_edge()
-        return 'None'
-    return query
-
 
 def listening():
     print("I am listening for a command")
@@ -65,7 +36,7 @@ def listening():
         listener.energy_threshold = 500
         command = listener.listen(source)
     try:
-        print('Recognizing speech...')
+        print('sRecognizing speech...')
         query = listener.recognize_google(command, language='en_us')
         query = query.lower()
         print(f"You said: {query}")
@@ -73,80 +44,31 @@ def listening():
         if query == 'open chrome':
             subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
             speak("Take diz")
+            listening()
 
-        if query == 'open league':
+        elif query == 'open league':
             print("ads")
             thread_lol_matchup_file = threading.Thread(target=lol_matchup_file)
             thread_lol_matchup_file.start()
-
+            listening()
 
         elif any(word in query for word in stopWord):
             speak("oke")
             print("oke")
-
+            exit(0)  # Exit the program when the stop word is detected
         else:
             speak("Command not recognized")
             listening()
 
-        #test
     except Exception as e:
         speak("I didn't understand what you've said")
         print(f"Error: {e}")
-        open_edge()
+        listening()
         return 'None'
     return query
 
 
 
-
-
-
-# def parse_command():
-#     print("Listening for activation word...")
-#     with sr.Microphone() as source:
-#         listener.pause_threshold = 4
-#         listener.energy_threshold = 200
-#         audio = listener.listen(source)
-#
-#     try:
-#         query = listener.recognize_google(audio, language='en_us')
-#         query = query.lower()
-#         if activationWord in query :
-#             print("Activation word heard")
-#             print("Recognizing speech...")
-#             with sr.Microphone() as source:
-#                 audio = listener.listen(source)
-#             query = listener.recognize_google(audio, language='en_us')
-#             query = query.lower()
-#             speak("got you!")
-#             speak(f"You said: {query}")
-#             print(query)
-#             return query
-#         else:
-#             print("Activation word not heard, listening again...")
-#             return 'None'
-#     except Exception as e:
-#         speak("I didn't understand what you've said")
-#         print(f"Error: {e}")
-#         return 'None'
-
-
-
-
-# engine.say("command")
-# engine.runAndWait()
-#
-#
-# with sr.Microphone() as source:
-#     print('listening...')
-#     voice = listener.listen(source)
-#     command = listener.recognize_google(voice)
-#     commands = command.lower()
-#     print('asdlistening...')
-#     engine.say(command)
-#     engine.runAndWait()
-#
-#     print(commands)
 
 
 

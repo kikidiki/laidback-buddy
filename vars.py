@@ -32,7 +32,7 @@ engine.setProperty('rate', 169)
 # print("Female Voice : {0}".format(voices[1].id))
 # print("Female Voice : {0}".format(voices[2].id))
 
-activationWord = ['Cami', 'Yo Cami', 'OK', 'Hey Cami', 'Hey Camilla', 'Camilla',  'Hey Camila', 'Camila']
+activationWord = ['OK']
 #activationWord = 'ok'
 stopWord = ['stfu', 'stop', 'shut the fuck up', 'exit']
 

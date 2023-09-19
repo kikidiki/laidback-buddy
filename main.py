@@ -1,44 +1,21 @@
 from speak import *
 
-# Main Loop
-
 if __name__ == '__main__':
     speak('Waiting for instructions.')
-
 
     while True:
         query = parse_command()
 
         for word in activationWord:
             if word.lower() in query:
-                # instructions
-                listener = threading.Thread(target=listening())
-                listener.start()
+                listening()
+
+        for word in stopWord:
+            if word.lower() in query:
+                speak('Stopping the program.')
+                exit(0)  # Exit the program when the stop word is detected
 
 
-
-
-
-#
-# while True:
-#     r = sr.Recognizer()
-#     with sr.Microphone() as source:
-#         print("Listening...")
-#         audio = r.listen(source)
-#     try:
-#         query = r.recognize_google(audio)
-#         print(f"You said: {query}")
-#         if query == 'open chrome':
-#             subprocess.run(["start", "microsoft-edge:https://thenextweb.com/news/google-chrome-sucks-heres-why-you-should-stop-using-it"], shell=True)
-#             speak("Take diz")
-#         elif query in stopWord:
-#             speak("oke")
-#             print("oke")
-#             break
-#         else:
-#             speak("Command not recognized")
-#     except Exception as e:
-#         print(e)
 
 
 
