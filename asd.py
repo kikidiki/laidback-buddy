@@ -1,20 +1,56 @@
+import os.path
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
-# List of applications to open
-keyword = ["chrome", "powerpoint", "teams"]
+SCOPES = ['https://www.googleapis.com/auth/calendar.events']
 
+def main():
+    creds = None
 
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
 
-import os
-import fnmatch
+    try:
+        service = build('calendar', 'v3', credentials=creds)
 
-def find_app(keyword):
-    # List of directories to search
-    dirs = ['C:\\Program Files', 'C:\\Program Files (x86)']
+        event = {
+            "summary": "My Python Event",
+            "location": "Somewhere Online",
+            "description": "Some more details on this awesome event",
+            "colorId": 6,
+            "start": {
+                "dateTime": "2023-10-10T09:00:00+02:00",
+                "timeZone": "Europe/Vienna"
+            },
+            "end": {
+                "dateTime": "2023-10-10T17:00:00+02:00",
+                "timeZone": "Europe/Vienna"
+            },
+            "recurrence": [
+                "RRULE:FREQ=DAILY;COUNT=1"  # Updated COUNT to 1 for a single event
+            ],
+            "attendees": [
+                {"email": "cdicolc21@gmail.com"},
+                {"email": "someemailthathopefullydoesnotexist@mail.com"}
+            ]
+        }
+        event = service.events().insert(calendarId="primary", body=event).execute()
+        print(f"Event created: {event.get('htmlLink')}")
 
-    for dir in dirs:
-        for root, dirnames, filenames in os.walk(dir):
-            for filename in fnmatch.filter(filenames, keyword):
-                return os.path.join(root, filename)
+    except HttpError as error:
+        print(f'An error occurred: {error}')
 
-    return None
-find_app(keyword)
+if __name__ == '__main__':
+    main()
