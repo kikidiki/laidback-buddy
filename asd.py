@@ -4,8 +4,9 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-
+import random
 SCOPES = ['https://www.googleapis.com/auth/calendar.events']
+
 
 def main():
     creds = None
@@ -26,23 +27,23 @@ def main():
         service = build('calendar', 'v3', credentials=creds)
 
         event = {
-            "summary": "My Python Event",
+            "summary": "saaaa",
             "location": "Somewhere Online",
             "description": "Some more details on this awesome event",
-            "colorId": 6,
+            "colorId": random.randint(1, 11),
             "start": {
-                "dateTime": "2023-10-10T09:00:00+02:00",
+                "dateTime": "2023-10-11T09:00:00+02:00",
                 "timeZone": "Europe/Vienna"
             },
             "end": {
-                "dateTime": "2023-10-10T17:00:00+02:00",
+                "dateTime": "2023-10-11T17:00:00+02:00",
                 "timeZone": "Europe/Vienna"
             },
             "recurrence": [
                 "RRULE:FREQ=DAILY;COUNT=1"  # Updated COUNT to 1 for a single event
             ],
             "attendees": [
-                {"email": "cdicolc21@gmail.com"},
+                {"email": "cdiscolc21@gmail.com"},
                 {"email": "someemailthathopefullydoesnotexist@mail.com"}
             ]
         }
@@ -51,6 +52,7 @@ def main():
 
     except HttpError as error:
         print(f'An error occurred: {error}')
+
 
 if __name__ == '__main__':
     main()
