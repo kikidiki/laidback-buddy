@@ -4,8 +4,6 @@ from funcs import *
 # playsound.playsound(drasti)
 
 
-
-
 # listens for keyword
 def parse_command():
     print("Listening")
@@ -65,7 +63,7 @@ def listening():
         print(f"Error: {e}")
         listening()
         return 'None'
-    return query
+    return query.lower
 
 
 
