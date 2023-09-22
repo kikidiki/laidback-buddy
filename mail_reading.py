@@ -1,19 +1,14 @@
 import imaplib
 import email
 
-imap_server = "imap.gmail.com"  # Updated IMAP server address
+imap_server = "imap.gmail.com"
 SMTP_PORT = 993
 
 email_address = "cdicolc21@gmail.com"
-# Specify the path to your file
-file_path = "D:\\PycharmProjects\\asd.txt"
+file_path = "D:\\PycharmProjects\\dsa.txt"
 
-# Open the file in read mode
 with open(file_path, 'r') as file:
-    # Read the password
-    spassword = file.read().strip()
-
-password = spassword
+    password = file.read().strip()
 
 imap = imaplib.IMAP4_SSL(imap_server)
 imap.login(email_address, password)
@@ -21,7 +16,11 @@ imap.login(email_address, password)
 imap.select("Inbox")
 
 _, msgnums = imap.search(None, "ALL")
-for msgnum in msgnums[0].split():
+
+# Get the 10 most recent emails
+msgnums = msgnums[0].split()[-10:]
+
+for msgnum in msgnums:
     _, data = imap.fetch(msgnum, "(RFC822)")
     message = email.message_from_bytes(data[0][1])
 
@@ -33,6 +32,12 @@ for msgnum in msgnums[0].split():
     print(f"Subject: {message.get('Subject')}")
 
     print("Content:")
+
     for part in message.walk():
         if part.get_content_type() == "text/plain":
-            print(part.as_string())
+            content = part.get_payload(decode=True)
+            if part.get_content_charset():
+                content = content.decode(part.get_content_charset())
+            else:
+                content = content.decode("utf-8", "ignore")
+            print(content)
