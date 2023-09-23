@@ -1,3 +1,3 @@
-from asd3 import *
-import subprocess
-MyClass2()
+from lol import *
+
+stock_price()

@@ -36,6 +36,8 @@ activationWord = ['OK']
 #activationWord = 'ok'
 stopWord = ['stfu', 'stop', 'shut the fuck up', 'exit']
 
+stock_api_key = '19EBHMC0OVJS12H9'
+
 
 def speak(text):
     engine.say(text)
