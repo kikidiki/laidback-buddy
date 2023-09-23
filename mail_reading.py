@@ -24,10 +24,10 @@ for msgnum in msgnums:
     _, data = imap.fetch(msgnum, "(RFC822)")
     message = email.message_from_bytes(data[0][1])
 
-    print(f"Message Number: {msgnum}")
+    #print(f"Message Number: {msgnum}")
     print(f"From: {message.get('From')}")
-    print(f"To: {message.get('To')}")
-    print(f"BCC: {message.get('BCC')}")
+    #print(f"To: {message.get('To')}")
+    #print(f"BCC: {message.get('BCC')}")
     print(f"Date: {message.get('Date')}")
     print(f"Subject: {message.get('Subject')}")
 
