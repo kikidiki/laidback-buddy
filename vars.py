@@ -37,6 +37,7 @@ activationWord = ['OK']
 stopWord = ['stfu', 'stop', 'shut the fuck up', 'exit']
 
 stock_api_key = '19EBHMC0OVJS12H9'
+sstock_api_key = 'DZOSXW8TC3NDSMIG'
 
 
 def speak(text):

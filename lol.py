@@ -1,5 +1,5 @@
 import requests
-
+from vars import stock_api_key
 class Stocks:
     def __init__(self):
         self.symbol = input("Enter the ticker symbol: ")
@@ -29,13 +29,11 @@ class Stocks:
 
 def stock_price():
 
-    api_key = 'YOUR_API_KEY_HERE'  # Replace with your Alpha Vantage API key
-
     # Create an instance of the Stocks class
     stock = Stocks()
 
     # Call the static method using the instance and symbol
-    stock_price = stock.get_stock_price(api_key, stock.symbol)
+    stock_price = stock.get_stock_price(stock_api_key, stock.symbol)
 
     if isinstance(stock_price, float):
         print(f"{stock.symbol} stock price: ${stock_price:.2f}")
